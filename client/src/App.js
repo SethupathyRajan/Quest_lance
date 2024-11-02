@@ -1,12 +1,12 @@
 import React from 'react'
+import HeaderComponent from './components/HeaderComponent'
+
 
 function App() {
   return (
-    <div>
-      <h1>
-        Hello This is new Project
-        </h1>
-      </div>
+    <div style={{fontFamily:'Arimo , sans-serif'}}>
+      <HeaderComponent />
+    </div>
   )
 }
 
