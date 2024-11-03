@@ -1,15 +1,14 @@
-import React from "react";
-import styles from "./Header.module.css";
-
+import React from 'react';
+import './HeaderComponent.css';
 
 
 function Header()  {
   return (
-    <div className={styles.headerDark}>
+    <div className="headerDark">
       <nav className="navbar navbar-dark navbar-expand-md navigation-clean-search">
         <div className="container">
           <a className="navbar-brand" href="#">
-            <img src="./src/logo.png" alt="Company Logo" style={{ height: '40px' }} />
+            <img src="../assets/logo.png"/>
           </a>
           <button
             className="navbar-toggler"
@@ -26,7 +25,7 @@ function Header()  {
             <ul className="nav navbar-nav">
               <li className="nav-item" role="presentation">
                 <a className="nav-link" href="#">
-                  Link
+                  Become a Seller
                 </a>
               </li>
               <li className="nav-item dropdown">
@@ -38,17 +37,17 @@ function Header()  {
                   data-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  Dropdown
+                  Explore
                 </a>
                 <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
                   <a className="dropdown-item" href="#">
-                    First Item
+                    Community
                   </a>
                   <a className="dropdown-item" href="#">
-                    Second Item
+                    Answers
                   </a>
                   <a className="dropdown-item" href="#">
-                    Third Item
+                    Blog
                   </a>
                 </div>
               </li>
