@@ -1,13 +1,13 @@
 import React from 'react';
 import { Button, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import logo from '../assets/logo.png';
-import './HeaderComponent.css';
+import '../styles/HeaderComponent.css';
 
 
 
 function Header()  {
   return (
-    <Navbar bg="dark" variant="dark" expand="md">
+    <Navbar  variant="dark" expand="md">
     <Navbar.Brand href="#">
       <img src={logo} style={{ maxHeight: '80px', maxWidth: '80px' }} alt="Company Logo" />
     </Navbar.Brand>
@@ -24,7 +24,7 @@ function Header()  {
       <form class="form-inline mr-auto" target="_self">
       <div class="form-group"><label for="search-field"><i class="fa fa-search"></i></label><input class="form-control search-field" type="search" name="search" id="search-field"/></div>
 </form>
-      <Nav>
+      <Nav className='ms-auto'>
         <Nav.Link href="#" className="login">Log In</Nav.Link>
         <Button variant="light" className="action-button" href="#">Sign Up</Button>
       </Nav>
