@@ -1,12 +1,19 @@
-import React from 'react';
-import { Button, Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Button, Modal, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import logo from '../assets/logo.png';
 import '../styles/HeaderComponent.css';
-
+import Signup from './signup';
 
 
 function Header()  {
-  return (
+
+  const [showSignup, setShowSignup] = useState(false);
+
+  const handleSignup = () => setShowSignup(true);
+  const handleClose = () => setShowSignup(false);
+
+
+  return (<>
     <Navbar  variant="dark" expand="md">
     <Navbar.Brand href="#">
       <img src={logo} style={{ maxHeight: '80px', maxWidth: '80px' }} alt="Company Logo" />
@@ -26,11 +33,26 @@ function Header()  {
 </form>
       <Nav className='ms-auto'>
         <Nav.Link href="#" className="login">Log In</Nav.Link>
-        <Button variant="light" className="action-button" href="#">Sign Up</Button>
+        <Button variant="light" className="action-button" onClick={handleSignup}>Sign Up</Button>
       </Nav>
     </Navbar.Collapse>
   </Navbar>
-  
+
+
+  <Modal show={showSignup} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Sign Up</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Signup />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+  </>
   );
 }
 

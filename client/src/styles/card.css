@@ -1,0 +1,137 @@
+/* card.css */
+
+/* General reset for the carousel layout */
+.carousel-inner-wrapper {
+    display: flex;
+    flex-wrap: nowrap; /* Ensure items do not wrap */
+    justify-content: center; /* Center items horizontally */
+    overflow-x: auto; /* Enable horizontal scrolling */
+    scroll-snap-type: x mandatory; /* Snap to each card when scrolling */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    padding: 0; /* Remove extra padding */
+    width: 100%; /* Ensure the container takes up full width */
+  }
+  /* Styling the grid container */
+  .grid-container {
+    display: flex;
+    overflow-x: auto; /* Enables horizontal scrolling */
+    gap: 20px; /* Space between the cards */
+    padding: 20px;
+    scroll-snap-type: x mandatory; /* Ensures smooth scrolling through cards */
+  }
+  .app-container {
+    padding: 0 20px;
+    overflow-x: hidden; /* Ensure no horizontal scrolling for the main container */
+  }
+  
+  .grid {
+    margin-top: 20px;
+    width: 100%;
+  }
+  
+  
+  /* Styling each card */
+  .card {
+    min-width: 250px; /* Adjust the width of each card */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: #fff;
+    text-align: center;
+    flex-shrink: 0; /* Prevent shrinking of the cards */
+    scroll-snap-align: start; /* Snaps the cards into view */
+  }
+  
+  .card-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  h3 {
+    margin-top: 10px;
+    font-size: 18px;
+  }
+  
+  .carousel-item {
+    padding: 10px 0; /* Adjust padding for carousel items */
+    display: flex; /* Use flexbox to align cards */
+    justify-content: center; /* Center the cards inside the carousel item */
+  }
+  
+  .carousel-inner {
+    display: flex; /* Use flexbox for the carousel inner items */
+    justify-content: flex-start; /* Align items to the start of the container */
+    gap: 10px; /* Space between the cards */
+  }
+  
+  .large-card {
+    width: 100%; /* Ensure cards take up full width of the container */
+    max-width: 300px; /* Optional: Set a max width for the cards */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 0 5px; /* Add spacing between cards */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .large-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .large-card .card-img-top {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    width: 100%; /* Ensure the image takes up full width of the card */
+    object-fit: cover; /* Ensure the image is properly cropped */
+    height: 200px; /* Set a consistent height for images */
+  }
+  
+  .large-card .card-body {
+    padding: 15px;
+    width: 100%; /* Ensure the card body takes up full width */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .large-card .card-title {
+    font-size: 1.25rem;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  /* Responsive Design for smaller screens */
+  @media (max-width: 768px) {
+    .carousel-inner-wrapper {
+      padding: 0 10px; /* Reduce padding on smaller screens */
+    }
+  
+    .large-card {
+      max-width: 100%; /* Ensure cards are full width on small screens */
+      margin-bottom: 15px; /* Add space between cards */
+    }
+  
+    .carousel-item {
+      padding: 5px; /* Reduce padding for carousel items */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .large-card .card-img-top {
+      height: 150px; /* Reduce image height on very small screens */
+    }
+  
+    .large-card .card-body {
+      padding: 10px;
+    }
+  
+    .large-card .card-title {
+      font-size: 1rem; /* Adjust title font size on very small screens */
+    }
+  }
