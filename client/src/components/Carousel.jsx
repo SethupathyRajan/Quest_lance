@@ -19,7 +19,7 @@ function ControlledCarousel() {
     <Carousel.Item>
       <img className="d-block w-100" src={freelancer1} alt="Find the Perfect Freelancer" />
       <Carousel.Caption>
-        <h3>Find the Perfect Freelancer</h3>
+        <h1>Find the Perfect Freelancer</h1>
         <p>Connect with top talent across various fields and bring your project to life with expert support.</p>
       </Carousel.Caption>
     </Carousel.Item>
@@ -27,7 +27,7 @@ function ControlledCarousel() {
     <Carousel.Item>
       <img className="d-block w-100" src={freelancer2} alt="Get Your Project Done" />
       <Carousel.Caption>
-        <h3>Get Your Project Done</h3>
+        <h1>Get Your Project Done</h1>
         <p>From graphic design to software development, get any task completed quickly and efficiently.</p>
       </Carousel.Caption>
     </Carousel.Item>
@@ -35,7 +35,7 @@ function ControlledCarousel() {
     <Carousel.Item>
       <img className="d-block w-100" src={freelancer3} alt="Easy, Safe, and Transparent" />
       <Carousel.Caption>
-        <h3>Easy, Safe, and Transparent</h3>
+        <h1>Easy, Safe, and Transparent</h1>
         <p>Enjoy secure transactions, transparent pricing, and a seamless hiring process.</p>
       </Carousel.Caption>
     </Carousel.Item>

@@ -1,8 +1,14 @@
-
+.carousel{
+    border-radius: 8px;
+}
 .carousel-item img {
  height: 600px;
  padding: 25px;
  width: 1000px;
 object-fit: cover;
-opacity: 2.3;
+opacity: 1.0;
+}
+
+.carousel-caption{
+    font-size: x-large;
 }

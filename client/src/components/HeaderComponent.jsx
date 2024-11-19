@@ -14,7 +14,7 @@ function Header()  {
 
 
   return (<>
-    <Navbar  variant="dark" expand="md">
+    <Navbar  fixed="top" variant="dark" expand="md">
     <Navbar.Brand href="#">
       <img src={logo} style={{ maxHeight: '80px', maxWidth: '80px' }} alt="Company Logo" />
     </Navbar.Brand>
@@ -28,9 +28,6 @@ function Header()  {
           <NavDropdown.Item href="#">Blog</NavDropdown.Item>
         </NavDropdown>
       </Nav>
-      <form class="form-inline mr-auto" target="_self">
-      <div class="form-group"><label for="search-field"><i class="fa fa-search"></i></label><input class="form-control search-field" type="search" name="search" id="search-field"/></div>
-</form>
       <Nav className='ms-auto'>
         <Nav.Link href="#" className="login">Log In</Nav.Link>
         <Button variant="light" className="action-button" onClick={handleSignup}>Sign Up</Button>
