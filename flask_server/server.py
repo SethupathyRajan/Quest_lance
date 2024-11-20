@@ -13,9 +13,8 @@ CORS(app, resources={
     }
 })
 
-
-client = MongoClient("mongodb+srv://rajansethupathyoffl:BngQC2mVAQXNvept@freelancecluster.k85ns.mongodb.net/?retryWrites=true&w=majority&appName=FreelanceCluster")
-db = client['qldb']
+client = MongoClient("mongodb+srv://rajansethupathyoffl:BngQC2mVAQXNvept@freelancecluster.k85ns.mongodb.net/?retryWrites=true&w=majority&appName=FreelanceCluster&ssl=true", tls=True, tlsAllowInvalidCertificates=False)
+db = client['qlDB']
 collection = db['users']
 
 def validate_email(email):
@@ -28,11 +27,20 @@ def signup():
     email = data.get("email")
     password = data.get("password")
     confirm_password = data.get("confirm_password")
+    business_name = data.get("business_name")
+    phone = data.get("phone")
+    category = data.get("category")
+    description = data.get("description")
 
-    if not name or not email or not password or not confirm_password:
+    # Validate required fields
+    if not name or not email or not password or not confirm_password or not business_name or not phone or not category or not description:
         return jsonify({'error': 'All fields are required!'}), 400
+    
+    # Validate email format
     if not validate_email(email):
         return jsonify({'error': 'Invalid email format!'}), 400
+
+    # Validate password match
     if password != confirm_password:
         return jsonify({'error': 'Passwords do not match!'}), 400
 
@@ -40,13 +48,38 @@ def signup():
     if collection.find_one({'email': email}):
         return jsonify({'error': 'Email is already registered!'}), 400
 
+    # Hash password
     salt = bcrypt.gensalt()
     hashed_password = bcrypt.hashpw(password.encode('utf-8'), salt)
 
-    user = {"name": name, "email": email, "password": hashed_password}
+    # Create user object with all relevant data
+    user = {
+        "name": name,
+        "email": email,
+        "password": hashed_password,
+        "business_name": business_name,
+        "phone": phone,
+        "category": category,
+        "description": description
+    }
+
+    # Insert user into the database
     collection.insert_one(user)
 
     return jsonify({"message": "User registered successfully!"}), 201
+
+
+@app.route('/login', methods=['POST'])
+def login():
+    data = request.json
+    email, password = data['email'], data['password']
+    user = collection.find_one({"email": email})  # Use `collection` here
+
+    if not user or not bcrypt.checkpw(password.encode('utf-8'), user['password']):
+        return jsonify({'error': 'Invalid email or password!'}), 400
+
+    return jsonify({'message': 'Login successful!', 'profilePic': user.get('profilePic', None)}), 200
+
 
 
 if __name__ == '__main__':

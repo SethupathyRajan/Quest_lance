@@ -1,34 +1,58 @@
 .hero-section {
-    background: linear-gradient(135deg, #000057, #29e487);
-    color: white;
-    margin: 25px;
-    margin-top: 120px;
-    padding: 80px 20px;
-    position: relative;
-    border-radius: 8px;
+  background: linear-gradient(135deg, #000057, #29e487);
+  color: white;
+  margin: 25px;
+  margin-top: 120px;
+  padding: 80px 20px;
+  position: relative;
+  border-radius: 8px;
+}
+.hero-title, .hero-subtitle {
+  will-change: opacity, transform;
+}
+.hero-title, .hero-subtitle {
+  opacity: 0; /* Ensure they start hidden */
+  transform: translateY(20px); /* Ensure they start translated */
+}
+
+.fade-in {
+  animation: fadeInUp 1s forwards; /* Ensure this is correctly applied */
+}
+
+@keyframes fadeInUp {
+  0% {
+      opacity: 0;
+      transform: translateY(20px);
   }
-  
-  .hero-title {
-    font-size: 3.5rem;
-    font-weight: bold;
-    margin-bottom: 20px;
+  100% {
+      opacity: 1;
+      transform: translateY(0);
   }
-  
-  .hero-subtitle {
-    font-size: 2.2rem;
-    margin-bottom: 30px;
-  }
-  
-  button-group .btn {
-    border-radius: 25px;
-    background-color: #67b7d6;
-  }
-  
-  form .form-control {
-    border-radius: 20px;
-  }
-  
-  form .btn {
-    border-radius: 20px;
-  }
-  
+}
+
+
+.button-group .btn {
+  border-radius: 25px;
+  background-color: #67b7d6;
+}
+
+form .form-control {
+  border-radius: 20px;
+}
+
+form .btn {
+  border-radius: 20px;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  animation: fadeInUp 1s forwards; /* Animation for title */
+}
+
+.hero-subtitle {
+  font-size: 2.2rem;
+  margin-bottom: 30px;
+  animation: fadeInUp 1s 0.3s forwards; /* Delay for subtitle animation */
+}

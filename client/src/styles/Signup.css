@@ -1,0 +1,68 @@
+.sign {
+    margin: 0;
+    background-image: url('../assets/hero-image1.jpg'); /* Replace with your image path */
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .signup-container {
+    background: rgba(255, 255, 255, 0.74); /* Translucent white */
+    backdrop-filter: blur(10px);
+    border-radius: 25px;
+    padding: 20px;
+    max-width: 600px; /* Increased max width */
+    width: 90%;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-body {
+    padding: 30px;
+  }
+  
+  .form-label {
+    font-weight: bold;
+  }
+  
+  .btn {
+    transition: background-color 0.3s ease;
+  }
+
+  .form-step {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  }
+  
+  .fade-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .fade-out {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  
+  .btn-primary {
+    background-color: #007bff; /* Bootstrap primary color */
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+  
+  .btn-secondary {
+    background-color: #6c757d; /* Bootstrap secondary color */
+  }
+  
+  .btn-secondary:hover {
+    background-color: #5a6268;
+  }
+  
+  .btn-success {
+    background-color: #28a745; /* Bootstrap success color */
+  }
+  
+  .btn-success:hover {
+    background-color: #218838;
+  }

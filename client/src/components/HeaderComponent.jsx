@@ -1,27 +1,31 @@
-import React, { useState } from 'react';
-import { Button, Modal, Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import React from 'react';
+import { Button, Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { LinkContainer } from "react-router-bootstrap";
 import logo from '../assets/logo.png';
 import '../styles/HeaderComponent.css';
-import Signup from './signup';
 
 
 function Header()  {
 
-  const [showSignup, setShowSignup] = useState(false);
+/*   const [showSignIn, setShowSignIn] = useState(false);
 
-  const handleSignup = () => setShowSignup(true);
-  const handleClose = () => setShowSignup(false);
+  const handleSignIn = () => setShowSignIn(true);
+  const handleClose = () => setShowSignIn(false); */
 
 
   return (<>
     <Navbar  fixed="top" variant="dark" expand="md">
     <Navbar.Brand href="#">
+    <LinkContainer to="/">
       <img src={logo} style={{ maxHeight: '80px', maxWidth: '80px' }} alt="Company Logo" />
+      </LinkContainer>
     </Navbar.Brand>
     <Navbar.Toggle aria-controls="navbar-nav" />
     <Navbar.Collapse id="navbar-nav">
       <Nav className="mr-auto">
+      <LinkContainer to="/start-selling">
         <Nav.Link href="#">Become a Seller</Nav.Link>
+        </LinkContainer>
         <NavDropdown title="Explore" id="dropdown-menu-link">
           <NavDropdown.Item href="#">Community</NavDropdown.Item>
           <NavDropdown.Item href="#">Answers</NavDropdown.Item>
@@ -29,14 +33,18 @@ function Header()  {
         </NavDropdown>
       </Nav>
       <Nav className='ms-auto'>
-        <Nav.Link href="#" className="login">Log In</Nav.Link>
-        <Button variant="light" className="action-button" onClick={handleSignup}>Sign Up</Button>
+        <LinkContainer to="/login">
+        <Nav.Link href="#" className="login" >Log In</Nav.Link>
+        </LinkContainer>
+        <LinkContainer to="/signup">
+        <Button variant="light" className="action-button">Sign Up</Button>
+        </LinkContainer>
       </Nav>
     </Navbar.Collapse>
   </Navbar>
 
 
-  <Modal show={showSignup} onHide={handleClose}>
+{/*   <Modal show={showSignup} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Sign Up</Modal.Title>
         </Modal.Header>
@@ -48,7 +56,7 @@ function Header()  {
             Close
           </Button>
         </Modal.Footer>
-      </Modal>
+      </Modal> */}
   </>
   );
 }
