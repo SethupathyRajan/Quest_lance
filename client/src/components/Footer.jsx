@@ -1,4 +1,5 @@
 import React from 'react';
+import { LinkContainer } from 'react-router-bootstrap';
 
 function Footer() {
   return (
@@ -41,40 +42,42 @@ function Footer() {
           <div className="row mt-3">
             {/* Grid column */}
             <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-              <h6 className="text-uppercase fw-bold mb-4">
-                <i className="fas fa-gem me-3"></i>Company name
-              </h6>
-              <p>
-                Here you can use rows and columns to organize your footer content.
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              </p>
+               
             </div>
 
             {/* Grid column */}
             <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
               <h6 className="text-uppercase fw-bold mb-4">Categories</h6>
-              <p><a href="#!" className="text-reset">WEB DEVELOPMENT</a></p>
-              <p><a href="#!" className="text-reset">DIGITAL MARKETING</a></p>
-              <p><a href="#!" className="text-reset">CONTENT CREATION</a></p>
-              <p><a href="#!" className="text-reset">APP DEVELOPMENT</a></p>
+              <LinkContainer to="/web-development">
+        <p><a href="#!" className="text-reset">Web Development</a></p>
+      </LinkContainer>
+      <LinkContainer to="/digital-marketing">
+        <p><a href="#!" className="text-reset">Digital Marketing</a></p>
+      </LinkContainer>
+      <LinkContainer to="/content-creation">
+        <p><a href="#!" className="text-reset">Content Creation</a></p>
+      </LinkContainer>
+      <LinkContainer to="/app-development">
+        <p><a href="#!" className="text-reset">App Development</a></p>
+      </LinkContainer>
             </div>
 
             {/* Grid column */}
             <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
               <h6 className="text-uppercase fw-bold mb-4">For clients</h6>
-              <p><a href="#!" className="text-reset">TRUST</a></p>
-              <p><a href="#!" className="text-reset">SAFETY</a></p>
-              <p><a href="#!" className="text-reset">LEARN & GUIDE</a></p>
-              <p><a href="#!" className="text-reset">HELP</a></p>
+              <p><a href="#!" className="text-reset">Trust</a></p>
+              <p><a href="#!" className="text-reset">Safety</a></p>
+              <p><a href="#!" className="text-reset">Learn & Guide</a></p>
+              <p><a href="#!" className="text-reset">Help</a></p>
             </div>
 
             {/* Grid column */}
             <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
               <h6 className="text-uppercase fw-bold mb-4">Company</h6>
-              <p><a href="#!" className="fas fa-home me-3">ABOUT US</a></p>
-              <p><a href="#!" className="fas fa-envelope me-3">HELP & SUPPORT</a></p>
-              <p><a href="#!" className="fas fa-phone me-3">TERMS OF SERVICE</a></p>
-              <p><a href="#!" className="fas fa-print me-3">PRIVACY POLICY</a></p>
+              <p><a href="#!" className="fas fa-home me-3">About Us</a></p>
+              <p><a href="#!" className="fas fa-envelope me-3">Help & Support</a></p>
+              <p><a href="#!" className="fas fa-phone me-3">Terms of Service</a></p>
+              <p><a href="#!" className="fas fa-print me-3">Privacy Policy</a></p>
             </div>
           </div>
         </div>

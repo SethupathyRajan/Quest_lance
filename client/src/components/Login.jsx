@@ -1,21 +1,17 @@
 import axios from 'axios';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
-import '../styles/Signup.css'; // Assuming the same CSS
+import React, { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { AuthContext } from '../contexts/AuthContext';
+import '../styles/Signup.css';
 
 function Login() {
-  const [loginData, setLoginData] = useState({
-    email: '',
-    password: '',
-  });
-
+  const { login } = useContext(AuthContext); // Access the login function from AuthContext
+  const [loginData, setLoginData] = useState({ email: '', password: '' });
   const [errors, setErrors] = useState({});
   const [success, setSuccess] = useState('');
-  const [loggedIn, setLoggedIn] = useState(false); // Track login status
-  const [profilePic, setProfilePic] = useState(''); // URL for profile picture
 
-  const navigate = useNavigate(); // React Router navigation hook
+  const navigate = useNavigate();
 
   const handleLoginChange = (e) => {
     setLoginData({ ...loginData, [e.target.id]: e.target.value });
@@ -28,15 +24,11 @@ function Login() {
     try {
       const response = await axios.post('http://localhost:5000/login', loginData);
       setSuccess(response.data.message);
-      setLoggedIn(true);
-      setProfilePic(response.data.profilePic); // Assume the backend sends a profile picture URL
+      login(); // Update global login state
+      navigate('/'); // Redirect to the main page
     } catch (error) {
       setErrors({ error: error.response?.data?.error || 'Invalid email or password!' });
     }
-  };
-
-  const redirectToSignup = () => {
-    navigate('/signup'); // Redirect to the Signup component
   };
 
   return (
@@ -70,16 +62,6 @@ function Login() {
             {errors.error && <p className="text-danger mb-3">{errors.error}</p>}
             {success && <p className="text-success mb-3">{success}</p>}
             <button type="submit" className="btn btn-primary w-100">Log In</button>
-            <p className="text-center mt-3">
-              Don't have an account?{' '}
-              <span
-                className="text-primary"
-                onClick={redirectToSignup}
-                style={{ cursor: 'pointer' }}
-              >
-                Sign Up
-              </span>
-            </p>
           </form>
         </div>
       </div>

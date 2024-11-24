@@ -1,0 +1,98 @@
+/* Footer spacing */
+.container {
+    padding-top: 80px; 
+    margin-bottom: 80px; /* Add spacing at the bottom for the footer */
+}
+
+
+.service-card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #333; /* Ensure text is visible */
+  }
+  
+  .card-text {
+    font-size: 1rem;
+    color: #555; /* Ensure text is visible */
+  }
+.service-listing-title {
+    font-size: 2rem; 
+     margin-top: 50px;
+    color: #333; /* Neutral dark text color */
+    font-weight: bold; /* Strong font weight */
+    text-align: left; /* Align title to the left */
+    margin-bottom: 20px; /* Space below the title */
+}
+
+/* Service Card Styling */
+.service-card {
+    border: 1px solid #ddd; /* Light border for separation */
+    border-radius: 8px; /* Rounded corners */
+    overflow: hidden; /* Prevent content overflow */
+    background-color: #fff; /* Clean white background */
+    transition: box-shadow 0.3s ease, transform 0.3s ease; /* Smooth hover effect */
+}
+
+.service-card:hover {
+    transform: translateY(-8px); /* Subtle lift effect */
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15); /* Deeper shadow on hover */
+}
+
+/* Card Image */
+.service-card img {
+    height: 180px; /* Fixed height for uniformity */
+    width: 100%; /* Full width of the card */
+    object-fit: cover; /* Maintain aspect ratio and cover the space */
+    border-bottom: 1px solid #eee; /* Divider below the image */
+}
+
+/* Card Title */
+.service-card-title {
+    font-size: 1.2rem; /* Slightly larger for emphasis */
+    color: #2a2a2a; /* Darker color for better readability */
+    font-weight: 600; /* Semi-bold title */
+    margin-bottom: 10px; /* Space below title */
+}
+
+/* Card Description and Price */
+.service-card .card-text {
+    font-size: 0.95rem; /* Standard readable size */
+    color: #666; /* Softer text color */
+    margin-bottom: 10px; /* Add spacing below text */
+}
+
+.service-card .card-text strong {
+    color: #333; /* Stronger emphasis for bold text */
+}
+
+/* No Services Available Placeholder */
+.text-center img {
+    max-width: 100%; /* Ensure the image is responsive */
+    border-radius: 8px; /* Match card design */
+    margin-bottom: 15px; /* Space below the image */
+}
+
+.text-center p {
+    font-size: 1rem; /* Readable text size */
+    color: #555; /* Subtle color for placeholder text */
+}
+
+/* Layout Adjustments */
+.mb-4 {
+    margin-bottom: 1.5rem; /* Consistent spacing between rows */
+}
+
+/* General Responsive Adjustments */
+@media (max-width: 768px) {
+    .service-card-title {
+        font-size: 1.1rem; /* Slightly smaller title for smaller screens */
+    }
+
+    .service-card .card-text {
+        font-size: 0.9rem; /* Adjust text size for better fit */
+    }
+
+    .service-listing-title {
+        font-size: 1.8rem; /* Slightly smaller title on mobile */
+    }
+}

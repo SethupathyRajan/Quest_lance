@@ -11,10 +11,17 @@
     width: 100%;
   }
   
+/* Hover effect */
+.grid-item:hover .card {
+  background-color: var(--hover-color); /* Use the CSS variable for hover color */
+  transform: translateY(-5px);
+  transition: transform 0.3s;
+}
   
   /* Styling each card */
   .card {
-    max-width: 200px; /* Adjust the width of each card */
+    max-width: 200px;
+    max-height: 230px; /* Adjust the width of each card */
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 50px;

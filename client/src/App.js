@@ -15,6 +15,14 @@ import Header from './components/HeaderComponent';
 import HeroSection from './components/herosection';
 import ImgOverlay from './components/ImageOverlay';
 import Login from './components/Login';
+import Accounting from './pages/Accounting';
+import AppDevelopment from './pages/AppDevelopment';
+import Coaching from './pages/Coaching';
+import ContentCreation from './pages/ContentCreation';
+import CyberSecurity from './pages/CyberSecurity';
+import DigitalMarketing from './pages/DigitalMarketing';
+import UXUIDesign from './pages/UXUIDesign';
+import WebDevelopment from './pages/WebDevelopment';
 import Signup from './signup';
 import StartSelling from './StartSelling';
 
@@ -55,10 +63,19 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/start-selling" element={<StartSelling />} />
-        <Route path='/login' element={<Login/>}/>
-        <Route path="/signup" element={<Signup/>}/>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/start-selling" element={<StartSelling />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
+      <Route path="/web-development" element={<WebDevelopment />} />
+      <Route path="/app-development" element={<AppDevelopment />} />
+      <Route path="/cyber-security" element={<CyberSecurity />} />
+      <Route path="/coaching" element={<Coaching />} />
+      <Route path="/digital-marketing" element={<DigitalMarketing />} />
+      <Route path="/content-creation" element={<ContentCreation />} />
+      <Route path="/accounting" element={<Accounting />} />
+      <Route path="/ux-ui-design" element={<UXUIDesign />} />
+      <Route path="*" element={<h1>404 - Page Not Found</h1>} />
       </Routes>
     </Router>
   );

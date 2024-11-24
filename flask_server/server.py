@@ -5,13 +5,8 @@ import re
 from pymongo import MongoClient
 
 app = Flask(__name__)
-CORS(app, resources={
-    r"/*": {
-        "origins": ["http://localhost:3000"],
-        "methods": ["OPTIONS", "GET", "POST", "PUT", "DELETE"],
-        "allow_headers": ["Content-Type"]
-    }
-})
+CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
+
 
 client = MongoClient("mongodb+srv://rajansethupathyoffl:BngQC2mVAQXNvept@freelancecluster.k85ns.mongodb.net/?retryWrites=true&w=majority&appName=FreelanceCluster&ssl=true", tls=True, tlsAllowInvalidCertificates=False)
 db = client['qlDB']
@@ -69,18 +64,25 @@ def signup():
     return jsonify({"message": "User registered successfully!"}), 201
 
 
+
 @app.route('/login', methods=['POST'])
 def login():
     data = request.json
     email, password = data['email'], data['password']
-    user = collection.find_one({"email": email})  # Use `collection` here
 
-    if not user or not bcrypt.checkpw(password.encode('utf-8'), user['password']):
-        return jsonify({'error': 'Invalid email or password!'}), 400
+    # Find user in the database
+    user = collection.find_one({"email": email})
 
-    return jsonify({'message': 'Login successful!', 'profilePic': user.get('profilePic', None)}), 200
+    if not user:
+        return jsonify({'error': 'Email not found!'}), 400
 
 
+    # Validate password
+    if not bcrypt.checkpw(password.encode('utf-8'), user['password']):
+        return jsonify({'error': 'Invalid password!'}), 400
+
+    return jsonify({
+        'message': 'Login successful!'    }), 200
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -18,7 +18,7 @@ function StartSelling() {
                 Ready to earn on your terms?
               </h1>
               <p className="hero-subtitle">
-                Become a seller on Fiverr and start earning money on your schedule.
+                Become a seller on QuestLance and start earning money on your schedule.
               </p>
               <Button
                 variant="success"
