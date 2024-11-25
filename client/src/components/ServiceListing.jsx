@@ -5,6 +5,8 @@ import Footer from './Footer';
 import Header from './HeaderComponent';
 
 const ServiceListing = ({ title, services }) => {
+  console.log(services); // Inside ServiceListing component
+
   return (
     <>
       <Header />
@@ -30,7 +32,7 @@ const ServiceListing = ({ title, services }) => {
             <Col>
               <div className="text-center">
                 <img
-                  src="https://via.placeholder.com/400x300.png?text=No+Services+Available"
+                  src="https://www.freepik.com/icon/location_4249650#fromView=keyword&page=1&position=92&uuid=d96cdb10-3df9-4cec-a7b7-9049145c3728"
                   alt="No services available"
                   className="img-fluid"
                 />

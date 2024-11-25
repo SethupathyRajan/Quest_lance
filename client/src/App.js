@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import Answers from './Answers';
 import AC from './assets/acc.png';
 import AB from './assets/app_dev.png';
 import CT from './assets/coa.png';
@@ -16,16 +17,15 @@ import HeroSection from './components/herosection';
 import ImgOverlay from './components/ImageOverlay';
 import Login from './components/Login';
 import Accounting from './pages/Accounting';
-import AppDevelopment from './pages/AppDevelopment';
-import Coaching from './pages/Coaching';
+import { AppDevelopment } from './pages/AppDevelopment';
+import { Coaching } from './pages/Coaching';
 import ContentCreation from './pages/ContentCreation';
 import CyberSecurity from './pages/CyberSecurity';
-import DigitalMarketing from './pages/DigitalMarketing';
-import UXUIDesign from './pages/UXUIDesign';
-import WebDevelopment from './pages/WebDevelopment';
+import { DigitalMarketing } from './pages/DigitalMarketing';
+import { UXUIDesign } from './pages/UXUIDesign';
+import { WebDevelopment } from './pages/WebDevelopment';
 import Signup from './signup';
 import StartSelling from './StartSelling';
-
 
 
 const cardDataSets = [
@@ -74,6 +74,7 @@ function App() {
       <Route path="/digital-marketing" element={<DigitalMarketing />} />
       <Route path="/content-creation" element={<ContentCreation />} />
       <Route path="/accounting" element={<Accounting />} />
+      <Route path="/answers" element={<Answers/>}/>
       <Route path="/ux-ui-design" element={<UXUIDesign />} />
       <Route path="*" element={<h1>404 - Page Not Found</h1>} />
       </Routes>

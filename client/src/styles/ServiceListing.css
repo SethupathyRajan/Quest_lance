@@ -74,7 +74,7 @@
 
 .text-center p {
     font-size: 1rem; /* Readable text size */
-    color: #555; /* Subtle color for placeholder text */
+    color: #000000; /* Subtle color for placeholder text */
 }
 
 /* Layout Adjustments */

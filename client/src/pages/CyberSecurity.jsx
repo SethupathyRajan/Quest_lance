@@ -1,7 +1,7 @@
 import React from 'react';
 import ServiceListing from '../components/ServiceListing';
 
-const CyberSecurity = () => {
+function CyberSecurity(){
   const services = [
     {
       id: 1,

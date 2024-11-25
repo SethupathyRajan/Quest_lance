@@ -2,13 +2,16 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import bcrypt
 import re
+import os
+import requests
 from pymongo import MongoClient
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
 
+dbkey = os.getenv('DB_CONNECT')
 
-client = MongoClient("mongodb+srv://rajansethupathyoffl:BngQC2mVAQXNvept@freelancecluster.k85ns.mongodb.net/?retryWrites=true&w=majority&appName=FreelanceCluster&ssl=true", tls=True, tlsAllowInvalidCertificates=False)
+client = MongoClient(dbkey, tls=True, tlsAllowInvalidCertificates=False)
 db = client['qlDB']
 collection = db['users']
 
@@ -83,6 +86,33 @@ def login():
 
     return jsonify({
         'message': 'Login successful!'    }), 200
+
+
+
+OPENAI_API_KEY = os.getenv('API_KEY') # Replace with your OpenAI API key
+
+@app.route('/chat', methods=['POST'])
+def chat():
+    try:
+        data = request.get_json()
+        user_message = data.get("message", "")
+
+        # OpenAI API call
+        response = requests.post(
+            "https://api.openai.com/v1/chat/completions",
+            headers={"Authorization": f"Bearer {OPENAI_API_KEY}", "Content-Type": "application/json"},
+            json={
+                "model": "gpt-3.5-turbo",
+                "messages": [{"role": "system", "content": "You are a helpful assistant."},
+                             {"role": "user", "content": user_message}]
+            },
+        )
+        result = response.json()
+        return jsonify({"response": result["choices"][0]["message"]["content"]})
+    except Exception as e:
+        print(f"Error: {e}")
+        return jsonify({"error": "Something went wrong"}), 500
+    
 
 if __name__ == '__main__':
     app.run(debug=True)

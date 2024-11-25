@@ -1,157 +1,275 @@
 import axios from 'axios';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import React, { useEffect, useState } from 'react';
-import logo from './assets/logo.png';
-import './styles/Signup.css'; // Import the CSS file
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import CustomizedBreadcrumbs from './components/Breadcrumb.jsx';
+import './Login.css';
 
-function Signup() {
-  const [formData, setFormData] = useState({
+const Login = () => {
+  const navigate = useNavigate();
+
+  const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+
+  // Signup State
+  const [user, setUser] = useState({
     name: '',
     email: '',
-    password: '',
-    confirm_password: '',
-    business_name: '',
     phone: '',
-    category: '',
-    description: '',
+    password: '',
+    cpassword: '',
   });
 
-  const [currentStep, setCurrentStep] = useState(1);
-  const [errors, setErrors] = useState({});
-  const [success, setSuccess] = useState('');
-  const [fadeClass, setFadeClass] = useState('fade-in'); // Start with fade-in
+  // Login State
+  const [logemail, setlogEmail] = useState('');
+  const [logpass, setlogPass] = useState('');
 
-  useEffect(() => {
-    // Ensure the form is visible with fade-in effect on mount
-    setFadeClass('fade-in');
-  }, []);
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.id]: e.target.value });
-    setErrors({});
-    setSuccess('');
+  // Handle input changes for signup
+  const handleInputs = (e) => {
+    const { name, value } = e.target;
+    setUser({ ...user, [name]: value });
   };
 
-  const handleSubmit = async (e) => {
+  // Signup Handler
+  const PostData = async (e) => {
     e.preventDefault();
+
+    // Validate form input before submitting
+    if (!ValidateForm()) return;
+
     try {
-      const response = await axios.post('http://localhost:5000/signup', formData);
-      setSuccess(response.data.message);
-      setFormData({
-        name: '',
-        email: '',
-        password: '',
-        confirm_password: '',
-        business_name: '',
-        phone: '',
-        category: '',
-        description: '',
+      const { name, email, phone, password, cpassword } = user;
+      const res = await axios.post(`${BACKEND_URL}/sign-up`, {
+        name,
+        email,
+        phone,
+        password,
+        cpassword,
       });
-      setCurrentStep(1);
+
+      if (res.status === 422 || !res.data) {
+        toast.error('Invalid Registration', {
+          position: 'bottom-right',
+          theme: 'colored',
+        });
+      } else {
+        toast.success('Registration Successful', {
+          position: 'bottom-right',
+          theme: 'colored',
+        });
+        setTimeout(() => {
+          window.location.reload();
+        }, 2500);
+      }
     } catch (error) {
-      setErrors({ error: error.response?.data?.error || 'Something went wrong!' });
+      console.error('Error during registration:', error);
+      toast.error('Something went wrong. Please try again.', {
+        position: 'bottom-right',
+        theme: 'colored',
+      });
     }
   };
 
-  const handleNext = () => {
-    setFadeClass('fade-out');
-    setTimeout(() => {
-      setCurrentStep((prev) => prev + 1);
-      setFadeClass('fade-in');
-    }, 300); // Match duration with the CSS transition
+  // Login Handler
+  const loginUser = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await axios.post(`${BACKEND_URL}/login`, {
+        email: logemail,
+        password: logpass,
+      });
+
+      if (res.status === 400 || !res.data) {
+        toast.error('Invalid Credentials', {
+          position: 'bottom-right',
+          theme: 'colored',
+        });
+      } else {
+        toast.success('Login Successful', {
+          position: 'bottom-right',
+          theme: 'colored',
+        });
+        setTimeout(() => navigate('/FindJobs'), 2000);
+      }
+    } catch (error) {
+      console.error('Error during login:', error);
+      toast.error('Something went wrong. Please try again.', {
+        position: 'bottom-right',
+        theme: 'colored',
+      });
+    }
   };
 
-  const handleBack = () => {
-    setFadeClass('fade-out');
-    setTimeout(() => {
-      setCurrentStep((prev) => prev - 1);
-      setFadeClass('fade-in');
-    }, 300); // Match duration with the CSS transition
+  // Validate Form
+  const ValidateForm = () => {
+    const { name, email, phone, password, cpassword } = user;
+    const regemail = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$/g;
+    const regphone = /^\d{10}$/;
+
+    if (!name) {
+      alert('Please enter your full name.');
+      return false;
+    }
+    if (!email || !regemail.test(email)) {
+      alert('Please enter a valid email address.');
+      return false;
+    }
+    if (!phone || !regphone.test(phone)) {
+      alert('Please enter a valid phone number.');
+      return false;
+    }
+    if (!password || password.length < 8) {
+      alert('Password must be at least 8 characters long.');
+      return false;
+    }
+    if (!cpassword || cpassword !== password) {
+      alert('Passwords do not match.');
+      return false;
+    }
+    return true;
+  };
+
+  // Toggle Between Login and Signup
+  const toggleForm = (toLogin) => {
+    const checkBox = document.getElementById('reg-log');
+    checkBox.checked = !toLogin;
   };
 
   return (
-    <div className='sign'>
-      <div className="d-flex justify-content-center align-items-center vh-100">
+    <>
+      <div className="sign">
+        <CustomizedBreadcrumbs />
         <div className="signup-container">
-          <div className="text-center mb-4">
-            <div>
-              <img src={logo} style={{ height: '80px', width: '80px', backgroundColor: '#ddd', borderRadius: '50%', margin: '0 auto' }} />
+          <div className="row full-height justify-content-center">
+            <div className="Glass">
+              <div className="py-5 text-center col-12 align-self-center">
+                <div className="pt-5 pb-5 text-center section">
+                  <h6 id="H6" className="pb-3 mb-0">
+                    <span id="l" onClick={() => toggleForm(true)}>Log In</span>
+                    <span id="r" onClick={() => toggleForm(false)}>Sign Up</span>
+                  </h6>
+                  <input type="checkbox" id="reg-log" className="checkbox" />
+
+                  <div className="mx-auto card-3d-wrap">
+                    <div className="card-3d-wrapper">
+                      {/* Login Form */}
+                      <div className="card-front">
+                        <div className="center-wrap">
+                          <form method="POST" onSubmit={loginUser}>
+                            <h4 id="H4" className="pb-3 mb-4">Log In</h4>
+                            <div className="form-group">
+                              <input
+                                type="email"
+                                name="logemail"
+                                className="form-style"
+                                placeholder="Your Email"
+                                value={logemail}
+                                onChange={(e) => setlogEmail(e.target.value)}
+                                autoComplete="off"
+                              />
+                              <i className="input-icon uil uil-at"></i>
+                            </div>
+                            <div className="mt-2 form-group">
+                              <input
+                                type="password"
+                                name="logpass"
+                                className="form-style"
+                                placeholder="Your Password"
+                                value={logpass}
+                                onChange={(e) => setlogPass(e.target.value)}
+                                autoComplete="off"
+                              />
+                              <i className="input-icon uil uil-lock-alt"></i>
+                            </div>
+                            <button
+                              type="submit"
+                              className="mt-4 btn old-signup-btn"
+                            >
+                              Login
+                            </button>
+                          </form>
+                        </div>
+                      </div>
+                      {/* Sign Up Form */}
+                      <div className="card-back">
+                        <div className="center-wrap">
+                          <form method="POST" onSubmit={PostData}>
+                            <h4 id="H4" className="pb-3 mb-4">Sign Up</h4>
+                            <div className="form-group">
+                              <input
+                                type="text"
+                                name="name"
+                                className="form-style"
+                                placeholder="Full Name"
+                                value={user.name}
+                                onChange={handleInputs}
+                              />
+                              <i className="input-icon uil uil-user"></i>
+                            </div>
+                            <div className="mt-2 form-group">
+                              <input
+                                type="email"
+                                name="email"
+                                className="form-style"
+                                placeholder="Your Email"
+                                value={user.email}
+                                onChange={handleInputs}
+                              />
+                              <i className="input-icon uil uil-at"></i>
+                            </div>
+                            <div className="mt-2 form-group">
+                              <input
+                                type="tel"
+                                name="phone"
+                                className="form-style"
+                                placeholder="Your Phone Number"
+                                value={user.phone}
+                                onChange={handleInputs}
+                              />
+                              <i className="input-icon uil uil-phone"></i>
+                            </div>
+                            <div className="mt-2 form-group">
+                              <input
+                                type="password"
+                                name="password"
+                                className="form-style"
+                                placeholder="Password"
+                                value={user.password}
+                                onChange={handleInputs}
+                              />
+                              <i className="input-icon uil uil-lock-alt"></i>
+                            </div>
+                            <div className="mt-2 form-group">
+                              <input
+                                type="password"
+                                name="cpassword"
+                                className="form-style"
+                                placeholder="Confirm Password"
+                                value={user.cpassword}
+                                onChange={handleInputs}
+                              />
+                              <i className="input-icon uil uil-lock-alt"></i>
+                            </div>
+                            <button
+                              type="submit"
+                              className="mt-4 btn old-signup-btn"
+                            >
+                              Sign Up
+                            </button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <h3 className="fw-bold mt-3">Signup</h3>
           </div>
-          <form onSubmit={handleSubmit}>
-            <div className={`form-step ${fadeClass}`}>
-              {currentStep === 1 && (
-                <>
-                  <div className="mb-4">
-                    <label htmlFor="name" className="form-label">Full Name</label>
-                    <input type="text" id="name" className="form-control" value={formData.name} onChange={handleChange} required />
-                  </div>
-                  <div className="mb-4">
-                    <label htmlFor="email" className="form-label">Email Address</label>
-                    <input type="email" id="email" className="form-control" value={formData.email} onChange={handleChange} required />
-                  </div>
-                </>
-              )}
-
-              {currentStep === 2 && (
-                <>
-                  <div className="mb-4">
-                    <label htmlFor="password" className="form-label">Password</label>
-                    <input type="password" id="password" className="form-control" value={formData.password} onChange={handleChange} required />
-                  </div>
-                  <div className="mb-4">
-                    <label htmlFor="confirm_password" className="form-label">Confirm Password</label>
-                    <input type="password" id="confirm_password" className="form-control" value={formData.confirm_password} onChange={handleChange} required />
-                  </div>
-                </>
-              )}
-
-              {currentStep === 3 && (
-                <>
-                  <div className="mb-4">
-                    <label htmlFor="business_name" className="form-label">Business Name</label>
-                    <input type="text" id="business_name" className="form-control" value={formData.business_name} onChange={handleChange} required />
-                  </div>
-                  <div className="mb-4">
-                    <label htmlFor="phone" className="form-label">Phone Number</label>
-                    <input type="text" id="phone" className="form-control" value={formData.phone} onChange={handleChange} required />
-                  </div>
-                </>
-              )}
-
-              {currentStep === 4 && (
-                <>
-                  <div className="mb-4">
-                    <label htmlFor="category" className="form-label">Category</label>
-                    <input type="text" id="category" className="form-control" value={formData.category} onChange={handleChange} required />
-                  </div>
-                  <div className="mb-4">
-                    <label htmlFor="description" className="form-label">Business Description</label>
-                    <textarea id="description" className="form-control" rows="3" value={formData.description} onChange={handleChange} required></textarea>
-                  </div>
-                </>
-              )}
-            </div>
-
-            {errors.error && <p className="text-danger mb-3">{errors.error}</p>}
-            {success && <p className="text-success mb-3">{success}</p>}
-
-            <div className="d-flex justify-content-between">
-              {currentStep > 1 && (
-                <button type="button" className="btn btn-secondary" onClick={handleBack}>Back</button>
-              )}
-              {currentStep < 4 ? (
-                <button type="button" className="btn btn-primary" onClick={handleNext}>Next</button>
-              ) : (
-                <button type="submit" className="btn btn-success">Register</button>
-              )}
-            </div>
-          </form>
         </div>
       </div>
-    </div>
+      <ToastContainer />
+    </>
   );
-}
+};
 
-export default Signup;
+export default Login;

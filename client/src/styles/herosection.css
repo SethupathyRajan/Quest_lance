@@ -9,6 +9,7 @@
 }
 .hero-title, .hero-subtitle {
   will-change: opacity, transform;
+  color: #fff;
 }
 .hero-title, .hero-subtitle {
   opacity: 0; /* Ensure they start hidden */
@@ -29,6 +30,7 @@
       transform: translateY(0);
   }
 }
+
 
 
 .button-group .btn {
@@ -53,6 +55,7 @@ form .btn {
 
 .hero-subtitle {
   font-size: 2.2rem;
+  color:#fff;
   margin-bottom: 30px;
   animation: fadeInUp 1s 0.3s forwards; /* Delay for subtitle animation */
 }

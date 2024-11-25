@@ -1,4 +1,5 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
+
 import { Button, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { LinkContainer } from "react-router-bootstrap";
 import logo from '../assets/logo.png';
@@ -23,7 +24,9 @@ function Header() {
           </LinkContainer>
           <NavDropdown title="Explore" id="dropdown-menu-link">
             <NavDropdown.Item href="#">Community</NavDropdown.Item>
+            <LinkContainer to="/answers">
             <NavDropdown.Item href="#">Answers</NavDropdown.Item>
+            </LinkContainer>
             <NavDropdown.Item href="#">Blog</NavDropdown.Item>
           </NavDropdown>
         </Nav>
