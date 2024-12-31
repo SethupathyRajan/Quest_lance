@@ -1,0 +1,169 @@
+/* General profile container styling */
+.profile-container {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  .profile-box {
+    display: flex;
+    flex-direction: row; /* Align profile photo and details horizontally */
+    width: 100%; /* Expand the profile box to take up the full available width */
+    max-width: 100%; /* No max-width limit */
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    box-sizing: border-box; /* Ensure padding is included in the width */
+  }
+  
+  /* Profile Header (Photo + Details) */
+  .profile-header {
+    display: flex;
+    flex-direction: row; /* Align photo and details horizontally */
+    align-items: center;
+    gap: 40px; /* Space between photo and details */
+    width: 100%; /* Ensure header takes up all the available space */
+  }
+  
+  /* Profile Photo Container */
+  .profile-photo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1; /* Allow photo section to take up more space */
+    margin-right: 40px; /* Add some margin between photo and details */
+  }
+  
+  .profile-photo {
+    width: 180px; /* Increase photo size */
+    height: 180px; /* Increase photo size */
+    border-radius: 50%;
+    margin-bottom: 20px;
+  }
+  
+  .profile-photo-options button {
+    margin: 5px;
+  }
+  
+  /* Profile Details Layout */
+  .profile-details {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex: 2; /* Profile details take up twice the space of the photo section */
+    width: 100%; /* Ensure the details section takes full width */
+    font-size: 18px; /* Increase the base font size */
+  }
+  
+  .profile-detail-label {
+    font-weight: bold;
+    font-size: 20px; /* Increase font size for labels */
+    margin-right: 10px;
+  }
+  
+  .profile-detail-value {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px; /* Increase font size for the values */
+  }
+  
+  .save-btn {
+    margin-left: 10px;
+  }
+  
+  .btn {
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  /* Input Fields */
+  .profile-detail input {
+    padding: 5px;
+    margin-left: 10px;
+  }
+  
+  .profile-detail-value button {
+    cursor: pointer;
+  }
+  
+  /* Styling for Profile Details Section */
+  .profile-box .profile-details {
+    margin-bottom: 30px; /* Adds margin at the bottom to separate profile and projects */
+  }
+  
+  /* Right side for Project Progress Section */
+  .project-progress {
+    display: flex;
+    flex-direction: row; /* Align projects horizontally */
+    gap: 30px; /* Add space between projects */
+    width: 100%; /* Ensure it spans full width */
+    padding: 20px;
+  }
+  
+  .project-item {
+    display: flex;
+    flex-direction: column; /* Stack the content vertically inside each project */
+    width: 45%; /* Set width of each project to 45% to ensure they sit next to each other */
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f3f3f3;
+    border: 1px solid #ccc;
+    gap: 20px;
+    min-width: 300px; /* Set a minimum width for each project item */
+  }
+  
+  .project-item h4 {
+    font-size: 22px; /* Increase font size for project titles */
+    margin-bottom: 10px;
+  }
+  
+  /* Progress Bar Containers */
+  .progress-bar-container {
+    width: 100%;
+    background-color: #e0e0e0; /* Light gray background for the bar */
+    border-radius: 10px;
+    height: 30px; /* Increase the height of progress bar */
+    margin-top: 10px;
+  }
+  
+  .progress-bar {
+    height: 100%;
+    border-radius: 10px;
+    background-color: #4caf50; /* Green color for completed progress */
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: width 0.3s ease-in-out;
+    font-size: 14px; /* Increase font size for progress bar text */
+  }
+  
+  /* Progress Bar Text Styling */
+  .progress-bar-text {
+    font-size: 14px; /* Make the progress text larger */
+    font-weight: normal;
+  }
+  
+  /* Styling for the button inside profile details */
+  button {
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Remove the Scroll Behavior (Slider) */
+  .project-progress {
+    overflow: visible; /* Remove any overflow or scrolling behavior */
+  }
+  

@@ -1,68 +1,90 @@
-.sign {
-    margin: 0;
-    background-image: url('../assets/hero-image1.jpg'); /* Replace with your image path */
-    background-size: cover;
-    background-position: center;
-  }
-  
-  .signup-container {
-    background: rgba(255, 255, 255, 0.74); /* Translucent white */
-    backdrop-filter: blur(10px);
-    border-radius: 25px;
+/* Container for Login Page */
+.auth-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #102770, #ffeba7);
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Optional Logo Styling */
+.logo-container {
+  text-align: center;
+}
+
+.logo-img {
+  max-width: 100px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+/* Login Form Styles */
+.auth-form {
+  background: #fff;
+  padding: 20px 40px;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 400px;
+}
+
+.auth-form h2 {
+  margin-bottom: 20px;
+  color: #102770;
+  text-align: center;
+}
+
+.auth-form input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.auth-form button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background: #102770;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.auth-form button:hover {
+  background: #ffeba7;
+  color: #102770;
+}
+
+/* Error and Success Messages */
+.text-danger {
+  color: #dc3545;
+  font-size: 14px;
+}
+
+.text-success {
+  color: #28a745;
+  font-size: 14px;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .auth-form {
     padding: 20px;
-    max-width: 600px; /* Increased max width */
-    width: 90%;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  }
-  
-  .card-body {
-    padding: 30px;
-  }
-  
-  .form-label {
-    font-weight: bold;
-  }
-  
-  .btn {
-    transition: background-color 0.3s ease;
+    max-width: 90%;
   }
 
-  .form-step {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  .auth-form input {
+    font-size: 14px;
   }
-  
-  .fade-in {
-    opacity: 1;
-    transform: translateY(0);
+
+  .auth-form button {
+    font-size: 14px;
   }
-  
-  .fade-out {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  
-  .btn-primary {
-    background-color: #007bff; /* Bootstrap primary color */
-  }
-  
-  .btn-primary:hover {
-    background-color: #0056b3;
-  }
-  
-  .btn-secondary {
-    background-color: #6c757d; /* Bootstrap secondary color */
-  }
-  
-  .btn-secondary:hover {
-    background-color: #5a6268;
-  }
-  
-  .btn-success {
-    background-color: #28a745; /* Bootstrap success color */
-  }
-  
-  .btn-success:hover {
-    background-color: #218838;
-  }
+}

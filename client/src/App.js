@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Answers from './Answers';
 import AC from './assets/acc.png';
 import AB from './assets/app_dev.png';
@@ -26,7 +26,7 @@ import { UXUIDesign } from './pages/UXUIDesign';
 import { WebDevelopment } from './pages/WebDevelopment';
 import Signup from './signup';
 import StartSelling from './StartSelling';
-
+import Profile from './components/Profile';
 
 const cardDataSets = [
   { image: WB, title: 'Web Development', text: '' },
@@ -59,24 +59,35 @@ function HomePage() {
   );
 }
 
+
+
+const isAuthenticated = () => {
+  return localStorage.getItem('email') !== null; 
+};
+
+const PrivateRoute = ({ element, ...rest }) => {
+  return isAuthenticated() ? element : <Navigate to="/login" />;
+};
+
 function App() {
   return (
     <Router>
       <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/start-selling" element={<StartSelling />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<Signup />} />
-      <Route path="/web-development" element={<WebDevelopment />} />
-      <Route path="/app-development" element={<AppDevelopment />} />
-      <Route path="/cyber-security" element={<CyberSecurity />} />
-      <Route path="/coaching" element={<Coaching />} />
-      <Route path="/digital-marketing" element={<DigitalMarketing />} />
-      <Route path="/content-creation" element={<ContentCreation />} />
-      <Route path="/accounting" element={<Accounting />} />
-      <Route path="/answers" element={<Answers/>}/>
-      <Route path="/ux-ui-design" element={<UXUIDesign />} />
-      <Route path="*" element={<h1>404 - Page Not Found</h1>} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/start-selling" element={<StartSelling />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/web-development" element={<WebDevelopment />} />
+        <Route path="/app-development" element={<AppDevelopment />} />
+        <Route path="/cyber-security" element={<CyberSecurity />} />
+        <Route path="/coaching" element={<Coaching />} />
+        <Route path="/digital-marketing" element={<DigitalMarketing />} />
+        <Route path="/content-creation" element={<ContentCreation />} />
+        <Route path="/accounting" element={<Accounting />} />
+        <Route path="/answers" element={<Answers />} />
+        <Route path="/ux-ui-design" element={<UXUIDesign />} />
+        <Route path="/profile" element={<PrivateRoute element={<Profile />} />} />
+        <Route path="*" element={<h1>404 - Page Not Found</h1>} />
       </Routes>
     </Router>
   );

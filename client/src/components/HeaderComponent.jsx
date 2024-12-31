@@ -33,10 +33,12 @@ function Header() {
         <Nav className='ms-auto'>
           {isLoggedIn ? (
             <>
-              <NavDropdown title="Profile" id="profile-dropdown">
-                <NavDropdown.Item href="#">Account</NavDropdown.Item>
-                <NavDropdown.Item onClick={logout}>Log Out</NavDropdown.Item>
-              </NavDropdown>
+              <Nav className="ms-auto">
+      <LinkContainer to="/profile">
+        <Nav.Link>Profile</Nav.Link>
+      </LinkContainer>
+      <Nav.Link onClick={logout}>Log Out</Nav.Link>
+    </Nav>
             </>
           ) : (
             <>

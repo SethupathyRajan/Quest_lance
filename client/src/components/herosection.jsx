@@ -21,18 +21,6 @@ const HeroSection = () => {
         <p className={`hero-subtitle ${fadeIn ? "fade-in" : ""}`}>
           Connecting you with the right talent to bring your vision to life.
         </p>
-        <Row className="justify-content-center">
-          <Col md={8}>
-            <Form className="d-flex">
-              <Form.Control
-                type="search"
-                placeholder="Search projects or developers"
-                className="me-2"
-              />
-              <Button variant="success">Search</Button>
-            </Form>
-          </Col>
-        </Row>
       </Container>
     </div>
   );
