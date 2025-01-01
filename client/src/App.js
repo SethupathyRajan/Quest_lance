@@ -17,7 +17,7 @@ import HeroSection from './components/herosection';
 import ImgOverlay from './components/ImageOverlay';
 import Login from './components/Login';
 import Accounting from './pages/Accounting';
-import { AppDevelopment } from './pages/AppDevelopment';
+import AppDevelopment from './pages/AppDevelopment';
 import { Coaching } from './pages/Coaching';
 import ContentCreation from './pages/ContentCreation';
 import CyberSecurity from './pages/CyberSecurity';
@@ -26,7 +26,14 @@ import { UXUIDesign } from './pages/UXUIDesign';
 import { WebDevelopment } from './pages/WebDevelopment';
 import Signup from './signup';
 import StartSelling from './StartSelling';
+import NotFound from './NotFound';
 import Profile from './components/Profile';
+import SellerSignup from './SellerSignup';
+import SellerLogin from './SellerLogin';
+import SelectAuthPage from './components/SelectAuthPage';
+import AddService from './AddService';
+import { AuthContext } from './contexts/AuthContext';
+console.log(SellerSignup);
 
 const cardDataSets = [
   { image: WB, title: 'Web Development', text: '' },
@@ -61,15 +68,8 @@ function HomePage() {
 
 
 
-const isAuthenticated = () => {
-  return localStorage.getItem('email') !== null; 
-};
-
-const PrivateRoute = ({ element, ...rest }) => {
-  return isAuthenticated() ? element : <Navigate to="/login" />;
-};
-
 function App() {
+
   return (
     <Router>
       <Routes>
@@ -86,8 +86,12 @@ function App() {
         <Route path="/accounting" element={<Accounting />} />
         <Route path="/answers" element={<Answers />} />
         <Route path="/ux-ui-design" element={<UXUIDesign />} />
-        <Route path="/profile" element={<PrivateRoute element={<Profile />} />} />
-        <Route path="*" element={<h1>404 - Page Not Found</h1>} />
+        <Route path="/profile" element={<Profile email={localStorage.getItem('email')} />} />
+        <Route path="*" element={<NotFound/>} />
+        <Route path="/sellstart" element={<SelectAuthPage />} />
+        <Route path="/seller-reg" element={<SellerSignup/>}/>
+        <Route path="/seller-login" element={<SellerLogin />} />
+        <Route path="/add-service" element={<AddService />} />
       </Routes>
     </Router>
   );

@@ -74,3 +74,26 @@
   background: #ffeba7;
   color: #102770;
 }
+
+/* Error/Success Message Container */
+.message-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; /* Space between the icon and text */
+  margin-top: 10px;
+  font-size: 14px; /* Smaller font size for messages */
+  color: #dc3545; /* Red for errors, adjust color for success as needed */
+}
+
+/* Icon Styling */
+.message-icon {
+  width: 20px; /* Reduce the size of the icon */
+  height: 20px; /* Match width and height */
+}
+
+/* Text Styling */
+.message-text {
+  font-size: 14px; /* Adjust text size to be smaller */
+  line-height: 1.4;
+}

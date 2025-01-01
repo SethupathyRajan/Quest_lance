@@ -1,0 +1,155 @@
+/* Global Container */
+.service-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    margin-top: 40px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 100vh;
+  }
+  
+  /* Page Header */
+  .service-header h1 {
+    font-size: 48px;
+    margin-top: 80px;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+    font-weight: bold;
+    width: 100%;
+  }
+  
+  .service-header p {
+    font-size: 18px;
+    margin-bottom: 30px;
+    color: #555;
+    text-align: center;
+    width: 80%;
+  }
+  
+  /* Grid Layout for Service Cards */
+  .service-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 50px;
+    margin-top: 50px;
+    justify-items: stretch;
+    align-items: stretch;
+  }
+  
+  /* Service Card Styling */
+  .service-card {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 350px;
+  }
+  
+  /* Hover Effect */
+  .service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Profile Image Style */
+  .service-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    object-fit: cover;
+  }
+  
+  /* Service Info (name, profession, price, rating) */
+  .service-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .service-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .service-description {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 10px;
+  }
+  
+  .service-price-rating {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  
+  .price {
+    font-size: 16px;
+    color: #007bff;
+  }
+  
+  .rating {
+    font-size: 14px;
+    color: #ffba00;
+  }
+  
+  /* Contact Button */
+  .contact-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .contact-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Responsive Layout Adjustments */
+  @media (max-width: 1024px) {
+    .service-list {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  
+    .service-container {
+      padding: 10px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .service-list {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .service-list {
+      grid-template-columns: 1fr;
+    }
+  }
+  

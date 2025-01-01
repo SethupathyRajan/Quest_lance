@@ -38,6 +38,7 @@ function Header() {
         <Nav.Link>Profile</Nav.Link>
       </LinkContainer>
       <Nav.Link onClick={logout}>Log Out</Nav.Link>
+
     </Nav>
             </>
           ) : (

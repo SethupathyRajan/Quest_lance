@@ -3,7 +3,7 @@ import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { AuthContext } from '../contexts/AuthContext';
-import '../styles/Signup.css'; // Styles matching your requirements
+import '../styles/Signup.css'; // Ensure this path is correct
 
 function Login() {
   const { login } = useContext(AuthContext); // Access the login function from AuthContext
@@ -22,18 +22,24 @@ function Login() {
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
     try {
+      // Send login request to the server
       const response = await axios.post('http://localhost:5000/login', loginData);
+
+      // If login is successful, store the user's email in localStorage
+      localStorage.setItem('email', loginData.email);
+
+      // Set success message and update global login state
       setSuccess(response.data.message);
-      login(); // Update global login state
-      navigate('/'); // Redirect to the main page
+      login(); // Optional: Updates global auth state if needed
+
     } catch (error) {
+      // Handle errors (e.g., invalid email or password)
       setErrors({ error: error.response?.data?.error || 'Invalid email or password!' });
     }
   };
 
   return (
     <div className="auth-container">
-      {/* Optional Logo Section */}
       <div className="logo-container text-center mb-4">
         <img src="../assets/logo.png" alt="Logo" className="logo-img" />
       </div>

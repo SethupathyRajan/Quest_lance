@@ -1,0 +1,92 @@
+/* Background Gradient */
+.seller-signup-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to bottom right, #1e3a8a, #f3f4f6);
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+  }
+  
+  /* Signup Form Styles */
+  .seller-signup-form {
+    background: #ffffff;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .seller-signup-form h2 {
+    margin-bottom: 20px;
+    color: #1e3a8a;
+    text-align: center;
+    font-weight: 600;
+  }
+  
+  /* Input Fields */
+  .seller-signup-form input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 16px;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+  
+  .seller-signup-form input:focus {
+    border-color: #1e3a8a;
+  }
+  
+  /* Submit Button */
+  .seller-signup-btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    background: #1e3a8a;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .seller-signup-btn:hover {
+    background-color: #3b82f6;
+    transform: scale(1.02);
+  }
+  
+  /* Error and Success Messages */
+  .seller-text-danger {
+    color: #dc2626;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  
+  .seller-text-success {
+    color: #16a34a;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .seller-signup-form {
+      padding: 20px 30px;
+    }
+  
+    .seller-signup-form input {
+      font-size: 14px;
+    }
+  
+    .seller-signup-btn {
+      font-size: 14px;
+    }
+  }
+  

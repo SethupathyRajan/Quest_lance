@@ -4,6 +4,7 @@ import heroImage from "./assets/heroImage.jpg";
 import Footer from "./components/Footer.jsx";
 import HeaderComponent from './components/HeaderComponent.jsx';
 import "./styles/StartSelling.css";
+import { LinkContainer } from "react-router-bootstrap";
 
 
 function StartSelling() {
@@ -17,17 +18,18 @@ function StartSelling() {
               <h1 className="hero-title">
                 Ready to earn on your terms?
               </h1>
-              <p className="hero-subtitle">
+              <p className="hero-subtitle" style={{color: '#fff'}}>
                 Become a seller on QuestLance and start earning money on your schedule.
               </p>
+              <LinkContainer to='/sellstart'>
               <Button
                 variant="success"
                 size="lg"
                 className="start-selling-btn"
-                href="#"
               >
                 Start Selling
               </Button>
+              </LinkContainer>
             </Col>
           </Row>
         </Container>

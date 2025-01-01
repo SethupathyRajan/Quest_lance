@@ -1,6 +1,6 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import React, { useEffect, useState } from 'react';
-import './ChatbotStyles.css';
+import '../styles/ChatbotStyles.css';
 
 function GeminiChatbot() {
   // State management
