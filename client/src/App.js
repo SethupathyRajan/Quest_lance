@@ -29,9 +29,15 @@ import StartSelling from './StartSelling';
 import NotFound from './NotFound';
 import Profile from './components/Profile';
 import SellerSignup from './SellerSignup';
+import Services from './Services';
 import SellerLogin from './SellerLogin';
 import SelectAuthPage from './components/SelectAuthPage';
 import AddService from './AddService';
+import ServiceDetails from './components/ServiceDetails';
+import AboutUs from './components/AboutUs';
+import HelpSupport from './components/HelpSupport';
+import PrivacyPolicy from './components/PrivacyPolicy';
+import TermsOfService from './components/TermsOfService';
 
 console.log(SellerSignup);
 
@@ -92,6 +98,12 @@ function App() {
         <Route path="/seller-reg" element={<SellerSignup/>}/>
         <Route path="/seller-login" element={<SellerLogin />} />
         <Route path="/add-service" element={<AddService />} />
+        <Route path="/about-us" element={<AboutUs/>} />
+        <Route path="/services" element={<Services />}/>
+        <Route path="/help-support" element={<HelpSupport/>} />
+        <Route path="/service/:id" element={<ServiceDetails/>} />
+        <Route path="/terms-of-service" element={<TermsOfService/>} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy/>} />
       </Routes>
     </Router>
   );

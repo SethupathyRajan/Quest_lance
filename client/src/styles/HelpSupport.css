@@ -1,0 +1,104 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  height: 100%;
+  background-color: #f9f9f9;
+  overflow-x: hidden;
+}
+
+.help-support-container {
+  margin-top: 100px;
+  margin-bottom: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 40px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.help-support-content {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.support-card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1.1rem;
+  border: 1px solid #ddd;
+  position: relative;
+}
+
+.support-card:hover {
+  transform: scale(1.02);
+}
+
+.support-card-title {
+  font-size: 1.4rem;
+  color: #333;
+  font-weight: 600;
+}
+
+.support-card-description {
+  margin-top: 15px;
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.6;
+}
+
+.support-card a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.support-card a:hover {
+  color: #0056b3;
+}
+
+/* Smooth Transition for Expand/Collapse */
+.support-card-description {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+}
+
+.support-card[aria-expanded="true"] .support-card-description {
+  max-height: 500px;
+  opacity: 1;
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 768px) {
+  h1 {
+      font-size: 2rem;
+  }
+
+  .support-card {
+      padding: 15px;
+  }
+
+  .support-card-title {
+      font-size: 1.2rem;
+  }
+
+  .support-card-description {
+      font-size: 0.9rem;
+  }
+}

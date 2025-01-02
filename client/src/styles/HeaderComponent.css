@@ -19,8 +19,8 @@
 }
 
 .navbar-brand img {
-  max-height: 100px; /* Adjust logo size */
-  max-width: 100px;
+  max-height: 75px; /* Adjust logo size */
+  max-width: 75px;
 }
 
 .navbar-brand {

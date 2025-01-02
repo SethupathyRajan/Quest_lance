@@ -1,0 +1,84 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+}
+
+.about-us-container {
+  margin-top: 100px;
+  margin-bottom: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Vertically center */
+  align-items: center; /* Horizontally center */
+  height: 100vh; /* Full height of the viewport */
+  padding: 20px;
+  box-sizing: border-box;
+  overflow: hidden; /* Prevents scrollbars from appearing */
+}
+
+h1 {
+  font-size: 3rem;
+  color: #333;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.team-members {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  max-width: 100%;
+  margin-top: 20px;
+  overflow: hidden; /* Ensure no overflow */
+}
+
+.team-member-card {
+  background-color: #f4f4f4;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 22%; /* Adjust the width to fit horizontally */
+  text-align: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease;
+  min-width: 280px; /* Ensure a minimum width for cards */
+  cursor: pointer; /* Change cursor to pointer to indicate clickable card */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative; /* Important to ensure the zoomed card stacks above others */
+}
+
+/* Zoom effect on click */
+.team-member-card:hover {
+  transform: translateY(-10px); /* Add slight lift effect */
+}
+
+/* Enlarged view for clicked card */
+.team-member-card.zoomed {
+  transform: scale(1.5); /* Increase size of the clicked card */
+  z-index: 10; /* Bring the clicked card to the front */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  padding: 40px; /* Expand padding for larger content display */
+  min-height: 300px; /* Increase the minimum height for zoomed-in cards */
+  overflow-y: auto; /* Allow scrolling if content overflows */
+}
+
+/* Make the cards responsive */
+@media (max-width: 1200px) {
+  .team-member-card {
+      width: 45%; /* Adjust to 45% for medium-sized screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .team-member-card {
+      width: 100%; /* Full width for smaller screens */
+  }
+
+  h1 {
+      font-size: 2.5rem; /* Smaller header font for smaller screens */
+  }
+}

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./SellerSignup.css";
+import logo from './assets/logo.png'
 
 const SellerSignup = () => {
     const [formData, setFormData] = useState({
@@ -43,7 +44,7 @@ const SellerSignup = () => {
     return (
         <div className="seller-signup-container">
             <div className="seller-logo-container">
-                <img src="./assets/logo.png" alt="Logo" className="seller-logo-img" />
+                <img src={logo} alt="Logo" className="seller-logo-img" />
             </div>
             <div className="seller-signup-form">
                 <h2>Seller Signup</h2>

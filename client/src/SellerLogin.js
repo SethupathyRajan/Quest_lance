@@ -16,13 +16,17 @@ const SellerLogin = () => {
 
     try {
       const res = await axios.post("http://localhost:5000/slogin", formData);
-      if (res.data.success) {
+      console.log("Backend response:", res.data); // Debug log
+
+      if (res.data.message === 'Login successful!') {
         login(); // Update the context to mark the user as logged in
+        console.log("Login successful, navigating to add-service page..."); // Debug log
         navigate("/add-service"); // Redirect to AddService page
       } else {
-        setError(res.data.message || "Invalid credentials");
+        setError("Invalid credentials");
       }
     } catch (err) {
+      console.error("An error occurred:", err); // Debug log
       setError("An error occurred.");
     }
   };

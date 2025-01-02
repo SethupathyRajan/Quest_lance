@@ -15,6 +15,8 @@
 }
 
 .logo-img {
+  background-color: aliceblue;
+  border-radius: 50%;
   max-width: 100px;
   height: auto;
   margin-bottom: 20px;

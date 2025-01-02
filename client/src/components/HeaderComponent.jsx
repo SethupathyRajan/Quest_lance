@@ -1,5 +1,4 @@
 import { useContext } from 'react';
-
 import { Button, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { LinkContainer } from "react-router-bootstrap";
 import logo from '../assets/logo.png';
@@ -25,21 +24,24 @@ function Header() {
           <NavDropdown title="Explore" id="dropdown-menu-link">
             <NavDropdown.Item href="#">Community</NavDropdown.Item>
             <LinkContainer to="/answers">
-            <NavDropdown.Item href="#">Answers</NavDropdown.Item>
+              <NavDropdown.Item href="#">Answers</NavDropdown.Item>
             </LinkContainer>
             <NavDropdown.Item href="#">Blog</NavDropdown.Item>
           </NavDropdown>
+          {/* Added Services Link here */}
+          <LinkContainer to="/services">
+            <Nav.Link href="#">Services</Nav.Link>
+          </LinkContainer>
         </Nav>
         <Nav className='ms-auto'>
           {isLoggedIn ? (
             <>
               <Nav className="ms-auto">
-      <LinkContainer to="/profile">
-        <Nav.Link>Profile</Nav.Link>
-      </LinkContainer>
-      <Nav.Link onClick={logout}>Log Out</Nav.Link>
-
-    </Nav>
+                <LinkContainer to="/profile">
+                  <Nav.Link>Profile</Nav.Link>
+                </LinkContainer>
+                <Nav.Link onClick={logout}>Log Out</Nav.Link>
+              </Nav>
             </>
           ) : (
             <>

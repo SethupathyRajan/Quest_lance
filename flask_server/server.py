@@ -6,6 +6,7 @@ import os
 import requests
 import base64
 from pymongo import MongoClient
+from bson import ObjectId
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
@@ -16,6 +17,7 @@ client = MongoClient(DB_URI)
 db = client['qlDB']
 users_collection = db['users']
 sellers_collection = db['sellers']
+services_collection = db['services']
 
 # Helper function to validate email
 def is_valid_email(email):
@@ -207,6 +209,92 @@ def register_seller():
     sellers_collection.insert_one(seller)
 
     return jsonify({"message": "Seller registered successfully!"}), 201
+
+@app.route("/add-service", methods=["POST"])
+def add_service():
+    data = request.get_json()
+
+    # Extract data from the request
+    title = data.get("title")
+    description = data.get("description")
+    price = data.get("price")
+    imageUrl = data.get("imageUrl")
+    contact_info = data.get("contactInfo")  # New field for contact info
+    name = data.get("name")  # New field for the name of the seller
+
+    # Basic validation (ensure no field is empty)
+    if not title or not description or not price or not contact_info or not name:
+        return jsonify({"success": False, "message": "All fields are required!"}), 400
+
+    # Check if image URL exists, if not set a placeholder
+    if not imageUrl:
+        imageUrl = "https://via.placeholder.com/150"  # Placeholder image URL
+
+    # Create the service document
+    service = {
+        "title": title,
+        "description": description,
+        "price": price,
+        "imageUrl": imageUrl,
+        "contactInfo": contact_info,  # Include contact info in the service document
+        "name": name,  # Include name in the service document
+    }
+
+    # Insert the service into the MongoDB collection
+    services_collection.insert_one(service)  # Using insert_one instead of append
+
+    return jsonify({"success": True, "message": "Service added successfully!"}), 201
+
+@app.route("/get-services", methods=["GET"])
+def get_services():
+    services = services_collection.find()  # Assuming you store services in a collection
+    services_list = []
+
+    for service in services:
+        services_list.append({
+            "title": service["title"],
+            "description": service["description"],
+            "price": service["price"],
+            "imageUrl": service.get("imageUrl", ""),
+            "rating": service.get("rating", ""),
+            "_id": str(service["_id"]),  # Convert ObjectId to string for frontend use
+        })
+
+    return jsonify({"success": True, "services": services_list}), 200
+
+
+import logging
+
+logging.basicConfig(level=logging.ERROR)
+logger = logging.getLogger(__name__)
+
+def objectid_to_str(obj):
+    if isinstance(obj, ObjectId):
+        return str(obj)
+    return obj
+
+@app.route("/service/<service_id>")
+def get_service(service_id):
+    try:
+        # Ensure the service_id is a valid ObjectId
+        service_id = ObjectId(service_id)  # Convert to ObjectId
+    except Exception as e:
+        return jsonify({"error": "Invalid service ID format"}), 400
+
+    try:
+        # Query the database for the service by '_id'
+        service = services_collection.find_one({"_id": service_id})
+
+        if not service:
+            return jsonify({"error": "Service not found"}), 404
+
+        # Convert ObjectId fields to string
+        service = {key: objectid_to_str(value) for key, value in service.items()}
+
+        return jsonify(service)  # Return the service details as JSON
+    except Exception as e:
+        print(f"Error fetching service: {e}")
+        return jsonify({"error": "Server error"}), 500
 
 
 if __name__ == '__main__':

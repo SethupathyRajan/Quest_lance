@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import logo from "../assets/logo.png"
 import { AuthContext } from '../contexts/AuthContext';
 import '../styles/Signup.css'; // Ensure this path is correct
 
@@ -41,7 +41,7 @@ function Login() {
   return (
     <div className="auth-container">
       <div className="logo-container text-center mb-4">
-        <img src="../assets/logo.png" alt="Logo" className="logo-img" />
+        <img src={logo} alt="Logo" className="logo-img" />
       </div>
       <div className="auth-form">
         <h2 className="fw-bold mb-4 text-center">Log In</h2>
