@@ -1,25 +1,44 @@
 import React from 'react';
-import ServiceListing from '../components/ServiceListing';
+import ServiceCard from './ServiceCard';
+import "../styles/ServicePage.css";
+import Header from '../components/HeaderComponent';
+import Footer from '../components/Footer';
 
-function CyberSecurity(){
+const CyberSecurity = () => {
   const services = [
     {
-      id: 1,
-      title: 'Vulnerability Assessment',
-      description: 'Comprehensive security testing for your systems.',
-      price: '₹15,000',
-      image: 'https://via.placeholder.com/280x150.png?text=Vulnerability+Assessment',
+      title: 'Network Security',
+      description: 'Protect your business with robust network security solutions.',
+      price: 'From ₹10000',
+      rating: '4.9',
+      imageUrl: 'https://via.placeholder.com/300x200?text=Network+Security',
     },
     {
-      id: 2,
       title: 'Penetration Testing',
-      description: 'Advanced penetration testing for critical systems.',
-      price: '₹25,000',
-      image: 'https://via.placeholder.com/280x150.png?text=Penetration+Testing',
+      description: 'Simulate cyberattacks to find vulnerabilities in your systems.',
+      price: 'From ₹15000',
+      rating: '5.0',
+      imageUrl: 'https://via.placeholder.com/300x200?text=Penetration+Testing',
     },
   ];
 
-  return <ServiceListing title="Cyber Security" services={services} />;
+  return (
+    <>
+      <Header />
+      <div className="service-container">
+        <header className="service-header">
+          <h1>Cyber Security</h1>
+          <p>Ensure your business is safe with our comprehensive cyber security services.</p>
+        </header>
+        <div className="service-list">
+          {services.map((service) => (
+            <ServiceCard key={service.title} {...service} />
+          ))}
+        </div>
+      </div>
+      <Footer />
+    </>
+  );
 };
 
 export default CyberSecurity;

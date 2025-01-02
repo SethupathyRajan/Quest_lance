@@ -8,6 +8,7 @@ const Profile = () => {
   const [editedUser, setEditedUser] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [profilePic, setProfilePic] = useState(null); // For storing the selected profile picture
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -41,7 +42,21 @@ const Profile = () => {
     try {
       const email = localStorage.getItem('email'); // Ensure email is sent during updates
       const updatedData = { ...editedUser, email };
-      await axios.put('http://127.0.0.1:5000/profile', updatedData);
+
+      // Prepare the form data to send the profile picture if available
+      const formData = new FormData();
+      for (const key in updatedData) {
+        formData.append(key, updatedData[key]);
+      }
+
+      if (profilePic) {
+        formData.append('profile_picture', profilePic);
+      }
+
+      await axios.put('http://localhost:5000/profile', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
+
       setUser(editedUser);
       setIsEditing((prev) => ({ ...prev, [field]: false }));
       alert('Changes saved successfully!');
@@ -55,6 +70,10 @@ const Profile = () => {
     setEditedUser({ ...editedUser, [field]: e.target.value });
   };
 
+  const handleProfilePicChange = (e) => {
+    setProfilePic(e.target.files[0]);
+  };
+
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
   if (!user) return <div>No user data available.</div>;
@@ -63,9 +82,49 @@ const Profile = () => {
     <div className="profile-container">
       <div className="profile-box">
         <h2>User Profile</h2>
+        
+        {/* Profile Picture Section */}
+        <div className="profile-detail">
+          <div className="profile-detail-label">Profile Picture</div>
+          <div className="profile-detail-value">
+            {isEditing['profile_picture'] ? (
+              <>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleProfilePicChange}
+                />
+                <button
+                  className="btn btn-outline-primary save-btn"
+                  onClick={() => handleSaveClick('profile_picture')}
+                >
+                  Save
+                </button>
+              </>
+            ) : (
+              <>
+                <img 
+                  src={user.profile_picture || 'default-profile-pic.png'} 
+                  alt="Profile" 
+                  className="profile-img"
+                />
+                <button
+                  className="btn btn-outline-primary"
+                  onClick={() => handleEditClick('profile_picture')}
+                >
+                  ✏️
+                </button>
+              </>
+            )}
+          </div>
+        </div>
+
+        {/* Other fields (name, profession, address, phone, etc.) */}
         {['name', 'profession', 'address', 'phone', 'mobile'].map((field) => (
           <div key={field} className="profile-detail">
-            <div className="profile-detail-label">{field.charAt(0).toUpperCase() + field.slice(1)}</div>
+            <div className="profile-detail-label">
+              {field.charAt(0).toUpperCase() + field.slice(1)}
+            </div>
             <div className="profile-detail-value">
               {isEditing[field] ? (
                 <>

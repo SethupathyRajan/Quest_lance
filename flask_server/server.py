@@ -4,6 +4,7 @@ import bcrypt
 import re
 import os
 import requests
+import base64
 from pymongo import MongoClient
 
 app = Flask(__name__)
@@ -24,11 +25,11 @@ def is_valid_email(email):
 @app.route('/signup', methods=['POST'])
 def signup():
     data = request.json
-    name = data.get("name")  # Matches frontend's "name"
-    email = data.get("email")  # Matches frontend's "email"
-    password = data.get("password")  # Matches frontend's "password"
-    confirm_password = data.get("confirmPassword")  # Matches frontend's "confirmPassword"
-    phone = data.get("phone")  # Matches frontend's "phone"
+    name = data.get("name")
+    email = data.get("email")
+    password = data.get("password")
+    confirm_password = data.get("confirmPassword")
+    phone = data.get("phone")
 
     # Validate required fields
     if not name or not email or not password or not confirm_password or not phone:
@@ -50,12 +51,13 @@ def signup():
     salt = bcrypt.gensalt()
     hashed_password = bcrypt.hashpw(password.encode('utf-8'), salt)
 
-    # Create user document
+    # Create user document (without profile picture)
     new_user = {
         "name": name,
         "email": email,
         "password": hashed_password,
         "phone": phone,
+        "profile_picture": None,  # Profile picture is optional and not set
     }
 
     # Insert the user into the database
@@ -109,16 +111,37 @@ def get_profile():
     if not email:
         return jsonify({'error': 'Email is required to fetch profile!'}), 400
 
+    # Fetch user data from the database
     user = users_collection.find_one({'email': email}, {'_id': 0})
     if not user:
         return jsonify({'error': 'User not found!'}), 404
+
+    # Check if profile_picture exists and is not None
+    if user.get('profile_picture'):
+        try:
+            # Check the type of profile_picture
+            print("Profile picture type:", type(user['profile_picture']))
+
+            # Ensure it's a byte object before base64 encoding
+            if isinstance(user['profile_picture'], bytes):
+                user['profile_picture'] = base64.b64encode(user['profile_picture']).decode('utf-8')
+            else:
+                print("Profile picture is not in bytes format.")
+                user['profile_picture'] = None
+        except Exception as e:
+            print("Error encoding profile picture:", e)
+            user['profile_picture'] = None
+    else:
+        print("No profile picture found.")
+        user['profile_picture'] = None
 
     return jsonify(user), 200
 
 @app.route('/profile', methods=['PUT'])
 def update_profile():
-    data = request.json
+    data = request.form.to_dict()  # Get text data (name, email, etc.)
     email = data.get('email')
+    profile_picture = request.files.get('profile_picture')
 
     if not email:
         return jsonify({'error': 'Email is required for update!'}), 400
@@ -135,7 +158,15 @@ def update_profile():
     if 'phone' in update_data and not re.match(r'^\d{10}$', update_data['phone']):
         return jsonify({'error': 'Invalid phone number format!'}), 400
 
+    # Handle profile picture upload (if any)
+    if profile_picture:
+        filename = secure_filename(profile_picture.filename)
+        filepath = os.path.join('static/uploads', filename)
+        profile_picture.save(filepath)
+        update_data['profile_picture'] = f'/static/uploads/{filename}'
+
     users_collection.update_one({'email': email}, {'$set': update_data})
+
     return jsonify({'message': 'Profile updated successfully!'}), 200
 
 

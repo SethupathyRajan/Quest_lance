@@ -2,7 +2,7 @@
 import React from 'react';
 import '../styles/ServicePage.css';
 
-function ServiceCard(title, description, price, rating, imageUrl) {
+function ServiceCard({title, description, price, rating, imageUrl}) {
   return(
   <div className="service-card">
     <img src={imageUrl} alt={title} className="service-image" />

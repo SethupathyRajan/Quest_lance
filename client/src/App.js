@@ -18,12 +18,12 @@ import ImgOverlay from './components/ImageOverlay';
 import Login from './components/Login';
 import Accounting from './pages/Accounting';
 import AppDevelopment from './pages/AppDevelopment';
-import { Coaching } from './pages/Coaching';
+import Coaching from './pages/Coaching';
 import ContentCreation from './pages/ContentCreation';
 import CyberSecurity from './pages/CyberSecurity';
-import { DigitalMarketing } from './pages/DigitalMarketing';
-import { UXUIDesign } from './pages/UXUIDesign';
-import { WebDevelopment } from './pages/WebDevelopment';
+import DigitalMarketing from './pages/DigitalMarketing';
+import UXUIDesign from './pages/UXUIDesign';
+import WebDevelopment from './pages/WebDevelopment';
 import Signup from './signup';
 import StartSelling from './StartSelling';
 import NotFound from './NotFound';
@@ -32,7 +32,7 @@ import SellerSignup from './SellerSignup';
 import SellerLogin from './SellerLogin';
 import SelectAuthPage from './components/SelectAuthPage';
 import AddService from './AddService';
-import { AuthContext } from './contexts/AuthContext';
+
 console.log(SellerSignup);
 
 const cardDataSets = [

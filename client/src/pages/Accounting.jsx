@@ -1,32 +1,44 @@
 import React from 'react';
-import ServiceListing from '../components/ServiceListing';
+import ServiceCard from './ServiceCard';
+import "../styles/ServicePage.css";
+import Header from '../components/HeaderComponent';
+import Footer from '../components/Footer';
 
 const Accounting = () => {
   const services = [
     {
-      id: 1,
-      title: 'Bookkeeping Services',
-      description: 'Accurate and efficient bookkeeping solutions for your business.',
-      price: '₹15,000',
-      image: 'https://via.placeholder.com/280x150.png?text=Bookkeeping+Services',
+      title: 'Bookkeeping',
+      description: 'Ensure your financial records are accurate and up-to-date.',
+      price: 'From ₹8000',
+      rating: '4.7',
+      imageUrl: 'https://via.placeholder.com/300x200?text=Bookkeeping',
     },
     {
-      id: 2,
       title: 'Tax Preparation',
-      description: 'Expert assistance with tax filing and preparation.',
-      price: '₹25,000',
-      image: 'https://via.placeholder.com/280x150.png?text=Tax+Preparation',
-    },
-    {
-      id: 3,
-      title: 'Financial Analysis',
-      description: 'In-depth financial analysis to support decision-making.',
-      price: '₹30,000',
-      image: 'https://via.placeholder.com/280x150.png?text=Financial+Analysis',
+      description: 'Get professional assistance for tax filings and planning.',
+      price: 'From ₹12000',
+      rating: '4.8',
+      imageUrl: 'https://via.placeholder.com/300x200?text=Tax+Preparation',
     },
   ];
 
-  return <ServiceListing title="Accounting Services" services={services} />;
+  return (
+    <>
+      <Header />
+      <div className="service-container">
+        <header className="service-header">
+          <h1>Accounting</h1>
+          <p>Manage your finances efficiently with our expert accounting services.</p>
+        </header>
+        <div className="service-list">
+          {services.map((service) => (
+            <ServiceCard key={service.title} {...service} />
+          ))}
+        </div>
+      </div>
+      <Footer />
+    </>
+  );
 };
 
 export default Accounting;
